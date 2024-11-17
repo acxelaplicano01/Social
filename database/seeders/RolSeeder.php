@@ -17,7 +17,7 @@ class RolSeeder extends Seeder
          $role = Role::create(['name' => 'Participante', 'guard_name' => 'web']);
 
          // Encuentra los permisos 'Admin-Participante' y 'Admin-miAsistencia'
-         $permissions = Permission::whereIn('name', ['admin-Participante', 'admin-miAsistencia','admin-Historial'])->get();
+         $permissions = Permission::whereIn('name', ['admin-Participante'])->get();
  
          // Asigna los permisos al rol
          if ($permissions) {
