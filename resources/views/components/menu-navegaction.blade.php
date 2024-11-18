@@ -21,7 +21,8 @@
          </div>
          <div class="flex items-center gap-2">
             <!-- Dropdown grande que contiene otro dropdown -->
-            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover" data-dropdown-delay="100"
+            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+               data-dropdown-delay="100"
                class="text-gray-400 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
                type="button">Dropdown hover <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -288,12 +289,21 @@
                      id="dropdown-user">
                      <div class="px-4 py-3" role="none">
                         <li>
-                           <a href="#"
-                              class="flex items-center px-4 py-2 hover:bg-gray-100 rounded-full  dark:hover:bg-gray-600 dark:hover:text-white">
-                              <img class="w-6 h-6 me-2 rounded-full"  src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&amp;color=000&amp;background=facc15">
-                              <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                 {{ Auth::user()->email }}
-                              </p>
+                           <a href="#">
+                           <div class="flex items-center space-x-3 rtl:space-x-reverse hover:bg-gray-100 rounded-full px-4 py-2 dark:hover:bg-gray-600 dark:hover:text-white">
+                              <div class="flex-shrink-0">
+                                 <img class="w-8 h-8 rounded-full"
+                                    src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&amp;color=000&amp;background=facc15">
+                              </div>
+                              <div class="flex-1 min-w-0">
+                                 <p class="text-sm font-semibold text-gray-900 truncate dark:text-white">
+                                    {{ Auth::user()->name }}
+                                 </p>
+                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    {{ Auth::user()->email }}
+                                 </p>
+                              </div>
+                           </div>
                            </a>
                         </li>
 
@@ -302,24 +312,24 @@
                      <ul class="py-1" role="none">
                         <li>
                            <x-dropdown-link href="{{ route('profile.show') }}">
-                              <div class="items-center gap-2 ">
-                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                              <div class="flex items-center gap-2 ">
+                                 <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                        stroke-width="2"
                                        d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 13 16h-2a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 12 21Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                  </svg>
-                                 {{ __('Perfil') }}
+                                 Perfil
                               </div>
                            </x-dropdown-link>
                         </li>
                         <li>
-                           <a href="#"
-                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                              role="menuitem">
+                           <x-dropdown-link data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+                              id="dropdownLeftButton" data-dropdown-toggle="dropdownLeft" data-dropdown-placement="left"
+                              href="#">
                               <div class="flex items-center gap-2 ">
-                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-width="2"
@@ -327,14 +337,41 @@
                                  </svg>
                                  Cuenta
                               </div>
-                           </a>
+                           </x-dropdown-link>
+                           <!-- Dropdown menu -->
+                           <div id="dropdownLeft" id="dropdownHover"
+                              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                 aria-labelledby="dropdownLeftButton">
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Inicio
+                                       de Sesión</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Notificacion
+                                       Settings</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Exportar
+                                       datos</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Borrar
+                                       cuenta</a>
+                                 </li>
+                              </ul>
+                           </div>
                         </li>
                         <li>
-                           <a href="#"
-                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                              role="menuitem">
+                           <x-dropdown-link data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+                              id="dropdownLeft" data-dropdown-toggle="dropdownLeftMuro" data-dropdown-placement="left"
+                              href="#">
                               <div class="flex items-center gap-2 ">
-                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-width="2"
@@ -342,14 +379,37 @@
                                  </svg>
                                  Mi muro
                               </div>
-                           </a>
+                           </x-dropdown-link>
+                           <!-- Dropdown menu -->
+                           <div id="dropdownLeftMuro" id="dropdownHover"
+                              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLeft">
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Personal</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Seguidos</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Me
+                                       gusta</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Menciones</a>
+                                 </li>
+                              </ul>
+                           </div>
                         </li>
                         <li>
-                           <a href="#"
-                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                              role="menuitem">
+                           <x-dropdown-link data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+                              id="dropdownLeft" data-dropdown-toggle="dropdownLeftAmigos" data-dropdown-placement="left"
+                              href="#">
                               <div class="flex items-center gap-2 ">
-                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
@@ -357,14 +417,29 @@
                                  </svg>
                                  Amigos
                               </div>
-                           </a>
+                           </x-dropdown-link>
+                           <!-- Dropdown menu -->
+                           <div id="dropdownLeftAmigos" id="dropdownHover"
+                              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLeft">
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mis
+                                       amigos</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Solicitudes</a>
+                                 </li>
+                              </ul>
+                           </div>
                         </li>
                         <li>
-                           <a href="#"
-                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                              role="menuitem">
+                           <x-dropdown-link data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+                              id="dropdownLeft" data-dropdown-toggle="dropdownLeftGrupos" data-dropdown-placement="left"
+                              href="#">
                               <div class="flex items-center gap-2 ">
-                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
@@ -372,30 +447,63 @@
                                  </svg>
                                  Grupos
                               </div>
-                           </a>
+                           </x-dropdown-link>
+                           <!-- Dropdown menu -->
+                           <div id="dropdownLeftGrupos" id="dropdownHover"
+                              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLeft">
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mis
+                                       grupos</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Invitaciones</a>
+                                 </li>
+                              </ul>
+                           </div>
                         </li>
                         <li>
-                           <a href="#"
-                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                              role="menuitem">
-                              <div class="flex items-center gap-2 ">
-                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                           <x-dropdown-link data-dropdown-toggle="dropdownHover" data-dropdown-trigger="hover"
+                              id="dropdownLeft" data-dropdown-toggle="dropdownLeftForo" data-dropdown-placement="left"
+                              href="#">
+                              <div class="flex items-center gap-2">
+                                 <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                        stroke-width="2" d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
                                  </svg>
-
                                  Foros
                               </div>
-                           </a>
+                           </x-dropdown-link>
+                           <!-- Dropdown menu -->
+                           <div id="dropdownLeftForo" id="dropdownHover"
+                              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownLeft">
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mis
+                                       discusiones</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mis
+                                       respuestas</a>
+                                 </li>
+                                 <li>
+                                    <a href="#"
+                                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Mis
+                                       Favoritos</a>
+                                 </li>
+                              </ul>
+                           </div>
                         </li>
                         <li>
-                           <a href="#"
-                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                              role="menuitem">
+                           <x-dropdown-link href="#">
                               <div class="flex items-center gap-2 ">
-                                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -404,7 +512,7 @@
                                  </svg>
                                  Fotos
                               </div>
-                           </a>
+                           </x-dropdown-link>
                         </li>
                         <ul class="pt-1 mt-1 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
                            <li>
@@ -414,7 +522,7 @@
                                     class="text-red-800 dark:text-gray-100 hover:bg-red-100"
                                     @click.prevent="$root.submit();">
                                     <div class="flex items-center gap-2 ">
-                                       <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                       <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true"
                                           xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                           viewBox="0 0 24 24">
                                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -444,51 +552,48 @@
          <li>
             <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')"
                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                   width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                     d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z" />
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                     d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z" />
+                  <path stroke="currentColor" stroke-width="2"
+                     d="M3 11h18m-9 0v8m-8 0h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z" />
                </svg>
-
-               <span class="ms-3">Dashboard</span>
+               <span class="ms-3 text-gray-400">Mi muro</span>
             </x-nav-link>
          </li>
          <li>
             <x-nav-link href="{{ route('publicacion') }}" :active="request()->routeIs('publicacion')"
                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                   width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
                      d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
                </svg>
 
-               <span class="ms-3">Grupos</span>
+               <span class="ms-3 text-gray-400">Grupos</span>
             </x-nav-link>
          </li>
          <li>
             <x-nav-link href="{{ route('publicacion') }}" :active="request()->routeIs('publicacion')"
                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                   width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                      d="M9 17h6l3 3v-3h2V9h-2M4 4h11v8H9l-3 3v-3H4V4Z" />
                </svg>
 
-               <span class="ms-3">Foros</span>
+               <span class="ms-3 text-gray-400">Foros</span>
             </x-nav-link>
          </li>
          <li>
             <x-nav-link href="{{ route('publicacion') }}" :active="request()->routeIs('publicacion')"
                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+               <svg class="w-6 h-6 text-gray-400 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                   width="24" height="24" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                      d="M13.5 8H4m0-2v13a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-5.032a1 1 0 0 1-.768-.36l-1.9-2.28a1 1 0 0 0-.768-.36H5a1 1 0 0 0-1 1Z" />
                </svg>
 
-               <span class="ms-3">Documentos</span>
+               <span class="ms-3 text-gray-400">Documentos</span>
             </x-nav-link>
          </li>
 
