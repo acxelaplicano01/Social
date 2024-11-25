@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\MiMuro\MiMuro;
 use App\Livewire\Publicacion\Publicaciones;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/publicacion', Publicaciones::class)->name('publicacion');
+
+    Route::get('/mimuro', MiMuro::class)->name('mimuro');
 });
